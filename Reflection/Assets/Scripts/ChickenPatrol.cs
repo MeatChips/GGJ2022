@@ -10,16 +10,25 @@ public class ChickenPatrol : MonoBehaviour
     private int waypointIndex;
     private float distance;
 
+    Rigidbody m_Rigidbody;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         waypointIndex = 0;
         transform.LookAt(waypoints[waypointIndex].position);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody.freezeRotation = true;
+
         distance = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
         if(distance < 1f)
         {
